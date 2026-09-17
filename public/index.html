@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>a question</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FFF6EF;
+    --blush: #FBD9D9;
+    --blush-deep: #F2A6B0;
+    --plum: #5A3346;
+    --plum-soft: #8C6478;
+    --gold: #E7A64B;
+    --card: #FFFFFF;
+    --shadow: rgba(90, 51, 70, 0.14);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --cream: #241922; --blush: #3A2530; --blush-deep: #7A4152;
+      --plum: #FBEEF2; --plum-soft: #D8B9C6; --gold: #F0B15C;
+      --card: #2E1F28; --shadow: rgba(0, 0, 0, 0.4);
+    }
+  }
+  :root[data-theme="dark"] {
+    --cream: #241922; --blush: #3A2530; --blush-deep: #7A4152;
+    --plum: #FBEEF2; --plum-soft: #D8B9C6; --gold: #F0B15C;
+    --card: #2E1F28; --shadow: rgba(0, 0, 0, 0.4);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0; min-height: 100vh;
+    background: radial-gradient(circle at 20% 10%, var(--blush) 0%, var(--cream) 55%);
+    font-family: 'Nunito', sans-serif;
+    color: var(--plum);
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px; overflow-x: hidden;
+  }
+
+  .petal {
+    position: absolute; font-size: 22px; opacity: 0.55;
+    animation: drift 9s ease-in-out infinite; pointer-events: none; user-select: none;
+  }
+  @media (prefers-reduced-motion: reduce) { .petal { animation: none; } }
+  @keyframes drift {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-18px) rotate(12deg); }
+  }
+
+  .card {
+    position: relative; width: 100%; max-width: 380px;
+    background: var(--card); border-radius: 28px;
+    padding: 40px 32px 34px; text-align: center;
+    box-shadow: 0 24px 60px var(--shadow);
+    border: 1px solid var(--blush);
+  }
+
+  .portrait {
+    width: 128px; height: 128px; margin: 0 auto 22px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, var(--blush-deep), var(--gold));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 58px;
+    box-shadow: 0 10px 26px var(--shadow), inset 0 0 0 5px var(--cream);
+  }
+
+  h1 {
+    font-family: 'Fredoka', sans-serif; font-weight: 600; font-size: 27px;
+    line-height: 1.35; margin: 0 0 8px; letter-spacing: 0.2px;
+  }
+
+  .sub { font-size: 15px; color: var(--plum-soft); margin: 0 0 30px; font-style: italic; }
+
+  .buttons { display: flex; gap: 14px; justify-content: center; position: relative; height: 56px; }
+
+  button {
+    font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 16px;
+    border: none; border-radius: 999px; padding: 14px 30px; cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  #yesBtn, .primary {
+    background: linear-gradient(135deg, var(--blush-deep), var(--gold));
+    color: #fff; box-shadow: 0 10px 22px var(--shadow);
+  }
+  #yesBtn:hover, .primary:hover { transform: translateY(-2px) scale(1.03); }
+  #yesBtn:active, .primary:active { transform: scale(0.97); }
+
+  #noBtn {
+    background: var(--blush); color: var(--plum); position: relative;
+    transition: transform 0.18s ease, left 0.18s ease, top 0.18s ease;
+  }
+
+  .stage { display: none; animation: pop 0.35s ease; }
+  .stage.active { display: block; }
+  @keyframes pop { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+  .footnote { margin-top: 26px; font-size: 12px; color: var(--plum-soft); opacity: 0.7; }
+
+  .field { text-align: left; margin-bottom: 16px; }
+  .field label { display: block; font-size: 13px; font-weight: 700; color: var(--plum-soft); margin-bottom: 6px; }
+  .field input, .field textarea {
+    width: 100%; font-family: 'Nunito', sans-serif; font-size: 15px; color: var(--plum);
+    background: var(--cream); border: 1px solid var(--blush); border-radius: 14px;
+    padding: 11px 14px; outline: none;
+  }
+  .field input:focus, .field textarea:focus { border-color: var(--blush-deep); }
+  .field textarea { resize: none; min-height: 60px; font-family: inherit; }
+
+  .wide { width: 100%; margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <div id="ask" class="stage active">
+    <div class="petal" style="top:6%; left:10%;">🌸</div>
+    <div class="petal" style="top:12%; right:8%; animation-delay:2s;">🌸</div>
+    <div class="portrait">🐾</div>
+    <h1>will you go on a date with me?</h1>
+    <p class="sub">no pressure, the button is just going to make this a little harder for you</p>
+    <div class="buttons">
+      <button id="yesBtn" onclick="sayYes()">yes 💛</button>
+      <button id="noBtn" onmouseenter="dodge()" onclick="dodge()">no...</button>
+    </div>
+    <p class="footnote">this is not a phishing attempt</p>
+  </div>
+
+  <div id="yay" class="stage">
+    <div class="portrait">🎉</div>
+    <h1>wait, you actually said yes??</h1>
+    <p class="sub">honestly I had three excuses ready in case you said no</p>
+    <button class="primary" onclick="showPlan()">okay okay, now what? →</button>
+  </div>
+
+  <div id="plan" class="stage">
+    <div class="portrait">📅</div>
+    <h1>perfect, pick what works</h1>
+    <p class="sub">I'll build the rest around it</p>
+    <form id="planForm" onsubmit="sendPlan(event)">
+      <div class="field">
+        <label for="dateInput">Date</label>
+        <input type="date" id="dateInput" required>
+      </div>
+      <div class="field">
+        <label for="timeInput">Time</label>
+        <input type="time" id="timeInput" required>
+      </div>
+      <div class="field">
+        <label for="noteInput">Anything I should know? (optional)</label>
+        <textarea id="noteInput" placeholder="allergies, a place you've been wanting to try, vibes..."></textarea>
+      </div>
+      <button class="primary wide" type="submit" id="submitBtn">confirm 💛</button>
+    </form>
+  </div>
+
+  <div id="sent" class="stage">
+    <div class="portrait">💌</div>
+    <h1>it's locked in</h1>
+    <p class="sub" id="sentSummary"></p>
+    <p class="footnote">saved — no need to do anything else</p>
+  </div>
+
+</div>
+
+<script>
+  const noBtn = document.getElementById('noBtn');
+  const buttonsBox = document.querySelector('.buttons');
+  let dodges = 0;
+  const phrases = ["no...", "wait really?", "you sure?", "last chance", "think again", "nope, try yes"];
+
+  function dodge() {
+    dodges++;
+    const boxRect = buttonsBox.getBoundingClientRect();
+    const btnRect = noBtn.getBoundingClientRect();
+    const maxX = boxRect.width - btnRect.width;
+    const maxY = 90;
+    const x = Math.random() * maxX - maxX / 2;
+    const y = Math.random() * maxY - maxY / 2;
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+    noBtn.textContent = phrases[Math.min(dodges, phrases.length - 1)];
+
+    // log the dodge count too, so you can see how hard she made you work
+    fetch('/api/respond', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ answer: 'no', note: 'dodge #' + dodges })
+    }).catch(() => {});
+  }
+
+  function sayYes() {
+    document.getElementById('ask').classList.remove('active');
+    document.getElementById('yay').classList.add('active');
+  }
+
+  function showPlan() {
+    document.getElementById('yay').classList.remove('active');
+    document.getElementById('plan').classList.add('active');
+  }
+
+  function formatDate(dateStr) {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    return new Date(y, m - 1, d).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  }
+  function formatTime(timeStr) {
+    const [h, min] = timeStr.split(':').map(Number);
+    const dt = new Date(); dt.setHours(h, min);
+    return dt.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+  }
+
+  async function sendPlan(e) {
+    e.preventDefault();
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'saving...';
+
+    const date = document.getElementById('dateInput').value;
+    const time = document.getElementById('timeInput').value;
+    const note = document.getElementById('noteInput').value.trim();
+
+    try {
+      await fetch('/api/respond', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ answer: 'yes', date, time, note })
+      });
+    } catch (err) {
+      // even if the save fails, still show her a confirmation — don't leave her stuck
+      console.error('Could not save response', err);
+    }
+
+    document.getElementById('sentSummary').textContent =
+      formatDate(date) + ' at ' + formatTime(time) + (note ? ' — ' + note : '');
+
+    document.getElementById('plan').classList.remove('active');
+    document.getElementById('sent').classList.add('active');
+  }
+</script>
+
+</body>
+</html>
